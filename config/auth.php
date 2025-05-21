@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -40,6 +40,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+
+        'company' => [
+            'driver' => 'passport',
+            'provider' => 'company',
+        ],
+
+        'candidate' => [
+            'driver' => 'passport',
+            'provider' => 'candidate',
+        ],
     ],
 
     /*
@@ -63,6 +78,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'company' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Company::class,
+        ],
+        'candidate' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Candidate::class,
         ],
 
         // 'users' => [

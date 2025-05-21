@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
+use App\Helpers\ResponseHelper;
+
 
 class Authenticate extends Middleware
 {
@@ -12,6 +14,15 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        /// return $request->expectsJson() ? null : route('login');
+
+        // return $request->expectsJson() ? null : ResponseHelper::error_response(
+        //     'Token not found.',
+        //     null,
+        //     401
+        // );
+
+
+        return $request->expectsJson() ? null : $request->json(['response' => 'Token not found']);
     }
 }
