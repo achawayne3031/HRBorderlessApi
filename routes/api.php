@@ -72,9 +72,11 @@ Route::group([
         Route::post('/register', 'AuthController@register');
     });
 
-
-    // Route::post('/login', 'AuthController@login');
-    // Route::post('/register', 'AuthController@register');
+    Route::group([
+        'prefix' => 'jobs',
+    ], function () {
+        Route::post('/{id}/apply', 'AuthController@login');
+    });
 });
 
 

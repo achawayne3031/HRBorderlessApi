@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 class JobsController extends Controller
 {
     //
+
+
+
+    public function apply(Request $request, $id) {}
 }
