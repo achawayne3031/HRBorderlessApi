@@ -19,10 +19,7 @@ class CandidateMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-
         try {
-
             if (!Auth::check('candidate')) {
                 return ResponseHelper::error_response(
                     'Unauthorised access.',

@@ -21,6 +21,12 @@ class CompanyJobValidator
                 'is_remote' => 'required',
             ],
 
+            'apply' => [
+                'resume' => 'required|file|mimes:pdf,doc,docx|max:2048',
+                'cover_letter' => 'required|file|mimes:pdf,doc,docx|max:2048',
+
+            ],
+
         ];
 
         return Func::run_validation($request, self::$validation_rules[$arg]);

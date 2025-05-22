@@ -53,6 +53,16 @@ Route::group([
         Route::put('/{id}', 'CompanyJobsController@update');
         Route::delete('/{id}', 'CompanyJobsController@delete');
     });
+
+
+    Route::group([
+        'prefix' => 'dashboard',
+        'middleware' => ['company', 'auth:company']
+
+    ], function () {
+
+        Route::get('/', 'DashboardController@dashboard');
+    });
 });
 
 
@@ -74,8 +84,17 @@ Route::group([
 
     Route::group([
         'prefix' => 'jobs',
+        'middleware' => ['candidate', 'auth:candidate']
     ], function () {
-        Route::post('/{id}/apply', 'AuthController@login');
+        Route::post('/{id}/apply', 'JobsController@apply');
+    });
+
+
+    Route::group([
+        'prefix' => 'dashboard',
+        'middleware' => ['candidate', 'auth:candidate']
+    ], function () {
+        Route::get('/', 'DashboardController@dashboard');
     });
 });
 

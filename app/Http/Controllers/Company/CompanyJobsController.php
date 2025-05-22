@@ -65,7 +65,6 @@ class CompanyJobsController extends Controller
                 return ResponseHelper::response_data(false, 401, 'Job not in your job collection', null, null, []);
             }
 
-
             DBHelpers::soft_delete(CompanyJobs::class, $id);
 
             return ResponseHelper::response_data(true, 200, 'Job data deleted successfully', null, null, []);

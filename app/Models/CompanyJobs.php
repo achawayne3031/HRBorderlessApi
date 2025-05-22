@@ -22,7 +22,8 @@ class CompanyJobs extends Model
         'location',
         'salary_range',
         'is_remote',
-        'published_at'
+        'published_at',
+        'total_applied'
     ];
 
 

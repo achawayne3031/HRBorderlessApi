@@ -11,6 +11,7 @@ use App\Helpers\ResponseHelper;
 use App\Models\CompanyJobs;
 use App\Helpers\DBHelpers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 
 class JobsController extends Controller
@@ -29,7 +30,11 @@ class JobsController extends Controller
         try {
             //code...
 
-            $all_jobs = DBHelpers::query_paginate(CompanyJobs::class, ['company'], $location, $is_remote, $search, 400);
+            $all_jobs = Cache::remember('job_listings', 300, function () use ($location, $is_remote, $search) {
+                return DBHelpers::query_paginate(CompanyJobs::class, ['company'], $location, $is_remote, $search, 400);
+            });
+
+            // $all_jobs = DBHelpers::query_paginate(CompanyJobs::class, ['company'], $location, $is_remote, $search, 400);
 
             return ResponseHelper::response_data(true, 200, 'Job fetch was successful', $all_jobs, null, []);
         } catch (\Throwable $th) {

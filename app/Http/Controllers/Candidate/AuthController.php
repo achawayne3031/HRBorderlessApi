@@ -84,8 +84,7 @@ class AuthController extends Controller
                 $props = ['name', 'email', 'password'];
                 $error_res = ErrorValidation::arrange_error($errors, $props);
 
-
-                return ResponseHelper::response_data(false, 401, 'validation error', $error_res, null, []);
+                return ResponseHelper::response_data(false, 401, 'Validation error', $error_res, null, []);
             }
         } else {
 

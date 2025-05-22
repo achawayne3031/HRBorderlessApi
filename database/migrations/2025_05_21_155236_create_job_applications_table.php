@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('candidate_id');
             $table->unsignedBigInteger('job_id');
-            $table->text('resume_url');
-            $table->text('cover_letter_url');
+            $table->unsignedBigInteger('company_id');
+
+            $table->text('resume_url')->nullable(true);
+            $table->text('cover_letter_url')->nullable(true);
             $table->integer('status')->default(true);
             $table->timestamps();
 
